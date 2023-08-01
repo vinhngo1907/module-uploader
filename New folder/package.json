@@ -1,0 +1,31 @@
+{
+    "name": "app-tracking-code-times",
+    "version": "1.0.0",
+    "description": "",
+    "module": "true",
+    "main": "./main.js",
+    "scripts": {
+        "start": "node main.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev:app": "nodemon main.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.12"
+    },
+    "dependencies": {
+        "@aws-sdk/client-s3": "^3.379.1",
+        "aws-sdk": "^2.1426.0",
+        "axios": "^1.4.0",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-openid-connect": "^2.16.0",
+        "helmet": "^7.0.0",
+        "jwt-decode": "^3.1.2",
+        "morgan": "^1.10.0",
+        "node-color-log": "^10.0.2"
+    }
+}
