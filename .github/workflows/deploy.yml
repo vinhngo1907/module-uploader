@@ -25,33 +25,36 @@
 # test:
 #   stage: test
  
-stages:
-  - build
-  - test
-  - deploy
+name: Merge to Master
 
-variables:
-  # Define your environment variables
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-build:
-  stage: build
-  script:
-    - echo "Building..."
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-test:
-  stage: test
-  script:
-    - echo "Running tests..."
-    # Add your test commands here
+      # Add build and test steps here
 
-deploy:
-  stage: deploy
-  script:
-    - echo "Deploying to production..."
-    # Add your deployment steps here
+  merge_to_master:
+    runs-on: ubuntu-latest
+    needs: build
 
-# Configure the pipeline to run automatically on push or merge requests
-# Customize as needed
-only:
-  - master  # Run on the master branch
-  - merge_requests  # Run on merge requests
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Merge to Master
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "${{ secrets.GIT_USER_EMAIL }}"  # Use the environment variable here
+          git checkout master
+          git merge main --no-ff --no-edit
+          git push origin master
+
+  # Add more stages and jobs as needed
