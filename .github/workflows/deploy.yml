@@ -1,0 +1,57 @@
+# stages:
+#   - build
+#   - test
+#   - deploy
+
+# variables:
+#   # Define environment variables for Cloudinary and MongoDB
+#   CLOUDINARY_API_KEY: your_cloudinary_api_key
+#   CLOUDINARY_API_SECRET: your_cloudinary_api_secret
+#   MONGODB_URI: your_mongodb_uri
+
+# # Define the Docker image name and tag
+# image_name: my-python-app
+# image_tag: latest
+
+# # Build stage
+# build:
+#   stage: build
+#   script:
+#     - docker build -t $image_name:$image_tag .
+#   only:
+#     - master  # Only build on the master branch or other desired branches
+
+# # Test stage (add your testing commands here)
+# test:
+#   stage: test
+ 
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  # Define your environment variables
+
+build:
+  stage: build
+  script:
+    - echo "Building..."
+
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    # Add your test commands here
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to production..."
+    # Add your deployment steps here
+
+# Configure the pipeline to run automatically on push or merge requests
+# Customize as needed
+only:
+  - master  # Run on the master branch
+  - merge_requests  # Run on merge requests
