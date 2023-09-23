@@ -51,7 +51,7 @@ jobs:
 
       - name: Merge to Master
         run: |
-          git config user.name "${{secretes.GIT_USER_NAME}}"
+          git config user.name "${{secrets.GIT_USER_NAME}}"
           git config user.email "${{ secrets.GIT_USER_EMAIL }}"  # Use the environment variable here
           git checkout master
           git merge main --no-ff --no-edit
