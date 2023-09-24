@@ -49,12 +49,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Merge to Master
+      - name: Merge from main to Master
         run: |
           git config user.name "${{ secrets.GIT_USER_NAME }}"
           git config user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git checkout --track origin/master
+          git checkout master
           git merge main --no-ff --no-edit
           git push origin master
-
-  # Add more stages and jobs as needed
