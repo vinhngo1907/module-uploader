@@ -19,6 +19,9 @@ jobs:
     needs: build
 
     steps:
+      - name: Configure Git for fast-forward merges
+        run: git config pull.ff only
+        
       - name: Checkout code
         uses: actions/checkout@v2
 
