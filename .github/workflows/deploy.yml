@@ -22,13 +22,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Configure Git for fast-forward merges
-        run: git config pull.ff only
+      # - name: Configure Git for fast-forward merges
+      #   run: git config pull.ff only
 
       - name: Merge to Master
         run: |
           git config user.name "${{ secrets.GIT_USER_NAME }}"
           git config user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --global pull.ff only
           git checkout -b master
           git config pull.rebase false
           git pull origin master
