@@ -29,10 +29,8 @@ jobs:
         run: |
           git config user.name "${{ secrets.GIT_USER_NAME }}"
           git config user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git config pull.ff true
-          git config pull.rebase false
           git checkout -b master
-          git pull origin master
+          git pull origin master --allow-unrelated-histories
           git merge main --allow-unrelated-histories
           git remote set-url origin https://github.com/vinhngo1907/module-uploader.git
           git push origin master
