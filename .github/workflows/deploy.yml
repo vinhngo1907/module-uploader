@@ -19,17 +19,17 @@ jobs:
     needs: build
 
     steps:
-      - name: Configure Git for fast-forward merges
-        run: git config pull.ff only
-        
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Configure Git for fast-forward merges
+        run: git config pull.ff only
 
       - name: Merge from main to Master
         run: |
           git config user.name "${{ secrets.GIT_USER_NAME }}"
           git config user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git checkout -b master
+          git checkout master
           git config pull.rebase false
           git pull origin master
           git merge main --allow-unrelated-histories
