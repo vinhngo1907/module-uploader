@@ -13,25 +13,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-      - name: Configure Git for fast-forward merges
-        run: git config pull.ff only
-
-      - name: Pull latest changes from main
-        run: git pull origin main
-
-      - name: Merge changes from main into master
-        run: git merge main --no-ff --no-edit
-
-      - name: Show Git configuration
-        run: git config --list
-
-      - name: List branches
-        run: git branch -a
-
-      - name: Push merged changes to master
-        run: git push origin master
-      # Add build and test steps here
 
   merge_to_master:
     runs-on: ubuntu-latest
