@@ -17,6 +17,7 @@ class VehicleTypes(Enum):
     BICYCLE = "Bicycle"
 
 _JPB_BASE64_HEADER = "data:image/jpeg;base64,"
+_JPG_EXT = ".jpg"
 
 @dataclass
 class PlateInfo:
