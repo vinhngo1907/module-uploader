@@ -10,6 +10,14 @@ from base64 import b64encode
 # from cv2 import imencode
 from enum import Enum
 
+class VehicleTypes(Enum):
+    CAR = "Car"
+    MOTORCYCLE = "Motorcycle"
+    BUS = "Bus"
+    BICYCLE = "Bicycle"
+
+_JPB_BASE64_HEADER = "data:image/jpeg;base64,"
+
 @dataclass
 class PlateInfo:
     label: str
