@@ -51,5 +51,47 @@ class UploadImage:
 
     @staticmethod
     def image_base64_encode(bgr_img: ndarray):
-        print(">>>>", _JPB_BASE64_HEADER + b64encode(imencode(_JPG_EXT, bgr_img)))
         return _JPB_BASE64_HEADER + b64encode(imencode(_JPG_EXT, bgr_img))[1]
+
+
+@dataclass
+class UploadVehicleInfo:
+    vehicle_images: List[UploadImage]
+    lp_images: List[UploadImage]
+    lp_labels: List[PlateInfo]
+    record_time: datetime
+    start_frame: int
+    end_frame: int
+    preview_image: UploadImage
+    camera_id: str
+    type: VehicleTypes
+
+
+@dataclass
+class VehicleSchema:
+    record_time: datetime
+    start_frame: int
+    end_frame: int
+    camera_id: str
+    video_id: str
+    preview_image: Dict
+    vehicle_images: List[Dict] = field(default_factory=list)  # ImageInfo as dict
+    plate_images: List[Dict] = field(default_factory=list)
+    lp_labels: List[Dict] = field(default_factory=list)  # PlateInfo as dict
+    created_at: datetime = datetime.now()
+    updated_at: datetime = datetime.now()
+
+    def asDict(self):
+        return vars(self)
+
+
+@dataclass
+class UploadVideoInfo:
+    video_url = str
+    width = integer
+    height = integer
+    fps = integer
+    num_frames = integer
+    camera_id = str
+    created_at = datetime
+    updated_at = datetime
